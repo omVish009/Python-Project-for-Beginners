@@ -1,0 +1,65 @@
+class Employee:
+    def __init__(self, emp_id, name,position,attended,leave):
+        self.emp_id = emp_id
+        self.name = name
+        self.position = position
+        self.leave = leave
+        self.attended = attended
+        self.post = ""
+        self.grossPay = 0
+        self.netPay = 0
+        self.salary = 0
+    def salarySet(self):
+        if(self.position == 1):
+            self.salary = 200000
+            self.leaveDed = 5000
+            self.post = "Executive level position"
+        elif(self.position == 2):
+            self.salary = 150000
+            self.leaveDed = 4000
+            self.post = "Executive level position"
+        elif(self.position == 3):
+            self.salary = 100000
+            self.leaveDed = 3000
+            self.post = "Executive level position"
+        elif(self.position == 4):
+            self.salary = 50000
+            self.leaveDed = 2000
+            self.post = "Executive level position"
+    def leaveSet(self):
+        if(self.leave > 2):
+            self.leave = self.leave - 2
+        else:
+            self.leave = 1
+        #Leave in a month 
+        #Deduction of leave will vary according to employee Position
+        # A Rank  - Executive level position(Chair Person),Salary = 200000/month,Deduction/leave = 5000/day
+        # B Rank - Senior level position(Senior(HR),Salary = 150000/month,Deduction/leave = 4000/day
+        # C Rank - Mid level Position(Supervisor),Salary = 100000/month,Deduction/leave = 3000/day
+        # D Rank - Entry Level Position(Inters),Salary = 50000/month,Deduction/leave = 2000/day
+    def gross_pay(self):
+        self.grossPay = (self.salary)*(self.attended)
+    def net_pay(self):
+        self.netPay = (self.grossPay)-(self.leave * self.leaveDed)
+    def payment(self):
+        self.paid = self.netPay
+    def reciept(self):
+        print("Employee Id = ",self.emp_id)
+        print("Employee Name = ",self.name)
+        print("Employee Position = ",self.post)
+        print("Employee Salary = ",self.salary)
+        print("Employee Gross Salary = ",self.grossPay)
+        print("Employee Net Salary = ",self.netPay)
+empId = input("Enter Employee Id : ")
+name = input("Enter Employee Name : ")
+position = int(input("Enter 1 = A Rank,2 = B Rank,3 = C Rank,4 = D Rank : "))
+attended = int(input("Enter the working Month of Employee : "))
+leave = int(input("Enter Number of Leaves taken by Employee : "))
+emp1 = Employee(empId,name,position,attended,leave)
+emp1.salarySet()
+emp1.gross_pay()
+emp1.leaveSet()
+emp1.net_pay()
+emp1.payment()
+emp1.reciept()
+        
