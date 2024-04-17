@@ -17,15 +17,15 @@ class Employee:
         elif(self.position == 2):
             self.salary = 150000
             self.leaveDed = 4000
-            self.post = "Executive level position"
+            self.post = "Senior level position"
         elif(self.position == 3):
             self.salary = 100000
             self.leaveDed = 3000
-            self.post = "Executive level position"
+            self.post = "Mid level Position"
         elif(self.position == 4):
             self.salary = 50000
             self.leaveDed = 2000
-            self.post = "Executive level position"
+            self.post = "Entry Level Position"
     def leaveSet(self):
         if(self.leave > 2):
             self.leave = self.leave - 2
