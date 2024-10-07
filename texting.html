@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tester</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <style>
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            padding: 0 30px;
+        }
+
+        .navigation {
+            display: flex;
+            gap: 20px;
+            position: relative;
+        }
+
+        .navigation li {
+            list-style: none;
+            position: relative;
+        }
+
+        .navigation li a {
+            text-decoration: none;
+            color: grey;
+            position: relative;
+        }
+
+        .navigation li a:hover {
+            color: black;
+        }
+
+        /* Tooltip (dialogue box) styling */
+        .dialogue {
+            display: none;
+            position: absolute;
+            background-color: #f9f9f9;
+            color: black;
+            padding: 10px;
+            border-radius: 5px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            z-index: 1000;
+            top: 30px;
+            left: 0;
+            width: 150px;
+        }
+
+        /* Show dialogue on hover */
+        .navigation li:hover .dialogue {
+            display: block;
+        }
+
+        .icons {
+            display: flex;
+            gap: 20px;
+            align-items: center;
+            position: relative;
+        }
+
+        /* Search bar hidden initially */
+        .search-bar {
+            display: none;
+            align-items: center;
+            gap: 10px;
+            position: relative;
+        }
+
+        .search-bar input {
+            padding: 5px;
+            border-radius: 5px;
+            border: 1px solid grey;
+        }
+
+        .search-bar button {
+            padding: 5px 10px;
+            border-radius: 5px;
+            background-color: black;
+            color: white;
+            border: none;
+        }
+
+        .search-bar button:hover {
+            background-color: grey;
+        }
+
+        /* Make the search bar take the place of the search icon */
+        .search-bar-active {
+            display: flex;
+        }
+
+        .icons .bi-search {
+            cursor: pointer;
+        }
+
+        /* Close icon for search bar */
+        .bi-x-circle {
+            cursor: pointer;
+            color: black;
+        }
+    </style>
+</head>
+
+<body>
+
+    <nav class="container-fluid navbar-1">
+        <div class="navbar">
+            <!-- Navigation -->
+            <div class="navigation">
+                <li>
+                    <a href="#">Home</a>
+                    <div class="dialogue">Welcome to the homepage!</div>
+                </li>
+                <li>
+                    <a href="#">Link</a>
+                    <div class="dialogue">This is a useful link.</div>
+                </li>
+                <li>
+                    <a href="#">About</a>
+                    <div class="dialogue">Learn more about us here.</div>
+                </li>
+            </div>
+            <!-- Logo -->
+            <div class="nav-logo">
+                <h1>Autono</h1>
+            </div>
+            <!-- Icons -->
+            <div class="icons">
+                <!-- Search icon -->
+                <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-search"
+                    viewBox="0 0 16 16" id="searchIcon" onclick="toggleSearchBar()">
+                    <path
+                        d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001q.044.06.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1 1 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0" />
+                </svg>
+
+                <!-- Hidden search bar -->
+                <div class="search-bar" id="searchBar">
+                    <input type="text" placeholder="Search...">
+                    <button type="button">Search</button>
+                    <!-- Close icon -->
+                    <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-x-circle"
+                        viewBox="0 0 16 16" id="closeSearchBar" onclick="toggleSearchBar()">
+                        <path d="M8 1a7 7 0 1 0 0 14A7 7 0 0 0 8 1zM5.293 4.293a1 1 0 0 1 1.414 0L8 5.586l1.293-1.293a1 1 0 0 1 1.414 1.414L9.414 7l1.293 1.293a1 1 0 0 1-1.414 1.414L8 8.414l-1.293 1.293a1 1 0 0 1-1.414-1.414L6.586 7 5.293 5.707a1 1 0 0 1 0-1.414z" />
+                    </svg>
+                </div>
+
+                <!-- My account -->
+                <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-person"
+                    viewBox="0 0 16 16">
+                    <path
+                        d="M8 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6m2-3a2 2 0 1 1-4 0 2 2 0 0 1 4 0m4 8c0 1-1 1-1 1H3s-1 0-1-1 1-4 6-4 6 3 6 4m-1-.004c-.001-.246-.154-.986-.832-1.664C11.516 10.68 10.289 10 8 10s-3.516.68-4.168 1.332c-.678.678-.83 1.418-.832 1.664z" />
+                </svg>
+                <!-- Cart -->
+                <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor"
+                    class="bi bi-bag-dash" viewBox="0 0 16 16">
+                    <path fill-rule="evenodd" d="M5.5 10a.5.5 0 0 1 .5-.5h4a.5.5 0 0 1 0 1H6a.5.5 0 0 1-.5-.5" />
+                    <path
+                        d="M8 1a2.5 2.5 0 0 1 2.5 2.5V4h-5v-.5A2.5 2.5 0 0 1 8 1m3.5 3v-.5a3.5 3.5 0 1 0-7 0V4H1v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V4zM2 5h12v9a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1z" />
+                </svg>
+            </div>
+        </div>
+    </nav>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+        crossorigin="anonymous"></script>
+    <script>
+        // Function to toggle the search bar
+        function toggleSearchBar() {
+            const searchBar = document.getElementById("searchBar");
+            const searchIcon = document.getElementById("searchIcon");
+
+            if (searchBar.style.display === "none" || searchBar.style.display === "") {
+                searchBar.classList.add("search-bar-active");
+                searchBar.style.display = "flex";
+                searchIcon.style.display = "none";
+            } else {
+                searchBar.classList.remove("search-bar-active");
+                searchBar.style.display = "none";
+                searchIcon.style.display = "block";
+            }
+        }
+    </script>
+</body>
+
+</html>
